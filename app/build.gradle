@@ -1,0 +1,14 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.archive.inventory'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.archive.inventory'
+        minSdk 23
+        targetSdk 29
+        versionCode 1
+        versionName '1.0'
+    }
+}
