@@ -100,7 +100,14 @@ async function bootstrapCloud(){
 async function syncStateNow(){
  if(!cloudUser)return;
  const uid=cloudUser.id;
- const sectionRows=state.sections.map((s,i)=>({user_id:uid,section_key:String(s.id),title:s.name,fields:s.fields||[],position:i,updated_at:new Date().toISOString()}));
+ const sectionRows=state.sections.map((s,i)=>({
+  user_id:uid,
+  section_key:String(s.id),
+  title:String(s.name||s.title||s.id||'قسم بدون اسم'),
+  fields:s.fields||[],
+  position:i,
+  updated_at:new Date().toISOString()
+}));
  if(sectionRows.length){const {error}=await supabaseClient.from('archive_sections').upsert(sectionRows,{onConflict:'user_id,section_key'});if(error)throw error;}
  const {error:delErr}=await supabaseClient.from('archive_records').delete().eq('user_id',uid);if(delErr)throw delErr;
  const recordRows=[];
