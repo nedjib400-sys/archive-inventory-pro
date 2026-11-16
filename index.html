@@ -43,7 +43,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const KEY='archive_inventory_schema_v2';
-https://glwpkkghyzfutznywkpc.supabase.co
+const SUPABASE_URL='https://glwpkkghyzfutznywkpc.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_cHiKhOS5T-yOun7OvrVtRA_SPG1spXe';
 const defaults=[{id:'PRJ',name:'ملفات المشاريع',fields:['رقم المشروع','اسم المشروع','الجهة','تاريخ المشروع','الحالة','ملاحظات']},{id:'EMP',name:'جرد الموظفين',fields:['الرقم الوظيفي','اسم الموظف','الإدارة','المسمى الوظيفي','موقع الملف','ملاحظات']},{id:'TRD',name:'الصفقات',fields:['رقم الصفقة','موضوع الصفقة','الجهة','التاريخ','القيمة','ملاحظات']},{id:'DEC',name:'العقود',fields:['رقم العقد','اسم العقد','الطرف المتعاقد','تاريخ العقد','الحالة','ملاحظات']},{id:'PLN',name:'المخططات والخطط',fields:['رقم المخطط','اسم المخطط','القسم','التاريخ','الموقع','ملاحظات']},{id:'LOAN',name:'الإعارات',fields:['رقم الإعارة','اسم المستعير','المادة','تاريخ الإعارة','تاريخ الإرجاع','الحالة']}];
 let state;try{state=JSON.parse(localStorage.getItem(KEY))}catch(e){}
@@ -56,7 +56,7 @@ function setCloudStatus(message,kind=''){const el=document.getElementById('cloud
 function authMessage(message,isError=false){const el=document.getElementById('authMessage');el.textContent=message;el.className='auth-message'+(isError?' error':'');}
 function showAuth(){document.getElementById('authBack').style.display='flex';}
 function hideAuth(){document.getElementById('authBack').style.display='none';}
-async function cloudSignIn(){
+function scheduleCloudSync(){
  const email=document.getElementById('authEmail').value.trim(),password=document.getElementById('authPassword').value;
  if(!email||!password)return authMessage('أدخل البريد الإلكتروني وكلمة المرور.',true);
  authMessage('جارٍ تسجيل الدخول...');
